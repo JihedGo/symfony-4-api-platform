@@ -22,10 +22,7 @@ class Invoice
      */
     private $amount;
 
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $sentAt;
+    
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -37,6 +34,16 @@ class Invoice
      * @ORM\JoinColumn(nullable=false)
      */
     private $customer;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $sentAt;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $chrono;
 
     public function getId(): ?int
     {
@@ -55,17 +62,7 @@ class Invoice
         return $this;
     }
 
-    public function getSentAt(): ?\DateTimeImmutable
-    {
-        return $this->sentAt;
-    }
-
-    public function setSentAt(\DateTimeImmutable $sentAt): self
-    {
-        $this->sentAt = $sentAt;
-
-        return $this;
-    }
+    
 
     public function getStatus(): ?string
     {
@@ -87,6 +84,30 @@ class Invoice
     public function setCustomer(?Customer $customer): self
     {
         $this->customer = $customer;
+
+        return $this;
+    }
+
+    public function getSentAt(): ?\DateTimeInterface
+    {
+        return $this->sentAt;
+    }
+
+    public function setSentAt(\DateTimeInterface $sentAt): self
+    {
+        $this->sentAt = $sentAt;
+
+        return $this;
+    }
+
+    public function getChrono(): ?int
+    {
+        return $this->chrono;
+    }
+
+    public function setChrono(int $chrono): self
+    {
+        $this->chrono = $chrono;
 
         return $this;
     }
